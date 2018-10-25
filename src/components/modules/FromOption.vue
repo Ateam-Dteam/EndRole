@@ -25,8 +25,8 @@
         </div>
 
         <div class="buttons">
-          <input type="button" class="btn-left" value="戻る" />
-          <input type="button" class="btn-right" value="進む" />
+          <input v-on:click="prevButtonAction" type="button" class="btn-left" value="戻る" />
+          <input v-on:click="nextButtonAction" type="button" class="btn-right" value="進む" />
         </div>
 
       </div>
@@ -41,8 +41,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'FromOption'
+  name: 'FromOption',
+  methods: {
+    ...mapActions('Form', {
+      'nextButtonAction': 'nextButtonAction',
+      'prevButtonAction': 'prevButtonAction'
+    })
+  }
 }
 </script>
 
