@@ -16,19 +16,19 @@
               <label class="cp_sl08_closeLabel" for="close"></label>
               <ul class="cp_sl08_options">
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="cat"/>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="cat" value="キリスト教" v-model="religion"/>
                   <label class="cp_sl08_label" for="cat">キリスト教</label>
                 </li>
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="dog"/>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="dog" value="イスラム教" v-model="religion"/>
                   <label class="cp_sl08_label" for="dog">イスラム教</label>
                 </li>
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="rabbit"/>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="rabbit" value="仏教" v-model="religion"/>
                   <label class="cp_sl08_label" for="rabbit">仏教</label>
                 </li>
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="squirrel"/>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="squirrel" value="無宗教" v-model="religion"/>
                   <label class="cp_sl08_label" for="squirrel">無宗教</label>
                 </li>
               </ul>
@@ -62,22 +62,35 @@
 
     <footer>
       <div class="price">
-        <h2>¥---</h2>
+        <h2>¥ {{ getPrice }} </h2>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'Religious',
+  name: 'FormReligion',
   methods: {
     ...mapActions('Form', {
       'nextButtonAction': 'nextButtonAction',
       'prevButtonAction': 'prevButtonAction'
     })
+  },
+  computed: {
+    ...mapGetters({
+      'getPrice': 'getPrice'
+    }),
+    religion: {
+      get () {
+        return this.$store.state.property.religion
+      },
+      set (value) {
+        this.$store.commit('setProperty', {religion: value})
+      }
+    }
   }
 }
 </script>

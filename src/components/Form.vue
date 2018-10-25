@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FormReligious from '@/components/modules/FormReligious'
+import FormReligion from '@/components/modules/FormReligion'
 import FormAttendant from '@/components/modules/FormAttendant'
 import FormOption from '@/components/modules/FromOption'
 import FormEstimate from '@/components/modules/FormEstimate'
@@ -19,7 +19,7 @@ export default {
     })
   },
   components: {
-    FormReligious,
+    FormReligion,
     FormAttendant,
     FormOption,
     FormEstimate

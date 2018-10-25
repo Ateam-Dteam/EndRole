@@ -4,12 +4,12 @@
 
     <div class="top-wapper">
       <div class="container radius">
-        <h1>¥--</h1>
+        <h1>¥ {{ getPrice }} </h1>
         <h2>規模感</h2>
-        <p>--------祥太まかせた反映させてくれw-----------</p>
+        <p> {{ this.$store.state.property.attendant }} </p>
 
         <h2>形式</h2>
-        <p>--------祥太まかせた反映させてくれw-----------</p>
+        <p> {{ this.$store.state.property.religion }} </p>
 
         <div class="center">
           <input type="button" class="btn" value="オプションを選択" />
@@ -19,7 +19,7 @@
 
         <div class="buttons">
           <input type="button" class="btn-left" value="Yes" />
-          <input type="button" class="btn-right" value="No" />
+          <input v-on:click="prevButtonAction" type="button" class="btn-right" value="No" />
         </div>
 
         <div class="right">
@@ -32,8 +32,21 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
-  name: 'FormEstimate'
+  name: 'FormEstimate',
+  methods: {
+    ...mapActions('Form', {
+      'nextButtonAction': 'nextButtonAction',
+      'prevButtonAction': 'prevButtonAction'
+    })
+  },
+  computed: {
+    ...mapGetters({
+      'getPrice': 'getPrice'
+    })
+  }
 }
 </script>
 

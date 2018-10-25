@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const Form = {
   namespaced: true,
   state: {
-    component: ['FormReligious', 'FormAttendant', 'FormOption', 'FormEstimate']
+    component: ['FormReligion', 'FormAttendant', 'FormOption', 'FormEstimate']
   },
   mutations: {},
   actions: {
@@ -27,9 +27,34 @@ const Form = {
   }
 }
 
+const plan = {
+  religion: {
+    '仏教': 10000,
+    'キリスト教': 20000,
+    '神道': 5000,
+    'イスラム教': 5000,
+    '無宗教': 10000
+  },
+  attendant: {
+    '家族': 5000,
+    '家族・親戚周り': 10000,
+    '家族・友人': 30000,
+    '家族・友人・親戚周り': 50000
+  },
+  option: {
+    'メッセージサービス': 1000,
+    '伝記製本': 2000
+  }
+}
+
 export default new Vuex.Store({
   state: {
-    stepCount: 0
+    stepCount: 0,
+    property: {
+      religion: '',
+      attendant: '',
+      option: ''
+    }
   },
   mutations: {
     setStepCountUp (state) {
@@ -40,9 +65,35 @@ export default new Vuex.Store({
       console.log('rootsetStepCountDown')
       state.stepCount--
     },
-    setProperty (state, poroperty) {
-      console.log(poroperty)
-      state.property[state.stepCount] = Object.assign(state.property[state.stepCount], poroperty)
+    setProperty (state, property) {
+      console.log(property)
+      state.property = Object.assign(state.property, property)
+    }
+  },
+  getters: {
+    // 料金概算をよしなに計算
+    getPrice (state) {
+      let price = 0
+
+      for (let key in state.property) {
+        if (plan[key]) {
+          if (Array.isArray(state.property[key])) {
+            for (let val of state.property[key]) {
+              if (plan[key][val]) {
+                price += plan[key][val]
+              }
+            }
+          } else {
+            if (plan[key][state.property[key]]) {
+              price += plan[key][state.property[key]]
+            }
+          }
+        }
+      }
+
+      console.log('getPrice', price)
+
+      return price
     }
   },
   modules: {

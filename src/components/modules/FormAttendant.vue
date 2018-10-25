@@ -9,19 +9,19 @@
         <div class="selectbox">
           <ul class="items">
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="家族" v-model="attendant"/>
               <span class="cp_sl08_label cp_sl08_placeholder">家族</span>
             </li>
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="家族・友人" v-model="attendant"/>
               <span class="cp_sl08_label cp_sl08_placeholder">家族・友人</span>
             </li>
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="家族・親戚周り" v-model="attendant"/>
               <span class="cp_sl08_label cp_sl08_placeholder">家族・親戚周り</span>
             </li>
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="家族・友人・親戚周り" v-model="attendant"/>
               <span class="cp_sl08_label cp_sl08_placeholder">家族・友人・親戚周り</span>
             </li>
             <li class="item">
@@ -42,14 +42,14 @@
 
     <footer>
       <div class="price">
-        <h2>¥---</h2>
+        <h2>¥ {{ getPrice }} </h2>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'FormAttendant',
@@ -58,6 +58,19 @@ export default {
       'nextButtonAction': 'nextButtonAction',
       'prevButtonAction': 'prevButtonAction'
     })
+  },
+  computed: {
+    ...mapGetters({
+      'getPrice': 'getPrice'
+    }),
+    attendant: {
+      get () {
+        return this.$store.state.property.attendant
+      },
+      set (value) {
+        this.$store.commit('setProperty', {attendant: value})
+      }
+    }
   }
 }
 </script>

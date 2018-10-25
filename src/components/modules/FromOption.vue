@@ -9,11 +9,11 @@
         <div class="selectbox">
           <ul class="items">
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="メッセージサービス" v-model="option"/>
               <span class="cp_sl08_label cp_sl08_placeholder">メッセージサービス</span>
             </li>
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="伝記製本" v-model="option"/>
               <span class="cp_sl08_label cp_sl08_placeholder">伝記製本</span>
             </li>
             <li class="item">
@@ -34,14 +34,14 @@
 
     <footer>
       <div class="price">
-        <h2>¥---</h2>
+        <h2>¥ {{ getPrice }} </h2>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'FromOption',
@@ -50,6 +50,19 @@ export default {
       'nextButtonAction': 'nextButtonAction',
       'prevButtonAction': 'prevButtonAction'
     })
+  },
+  computed: {
+    ...mapGetters({
+      'getPrice': 'getPrice'
+    }),
+    option: {
+      get () {
+        return this.$store.state.property.option
+      },
+      set (value) {
+        this.$store.commit('setProperty', {option: value})
+      }
+    }
   }
 }
 </script>
