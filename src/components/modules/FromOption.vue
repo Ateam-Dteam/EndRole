@@ -17,9 +17,9 @@
               <span class="cp_sl08_label cp_sl08_placeholder">伝記製本</span>
             </li>
             <li class="item">
-              <input class="" type="radio" name="awesomeness" />
+              <input class="" type="radio" name="awesomeness" value="その他" v-model="option"/>
               <span class="cp_sl08_label cp_sl08_placeholder"></span>
-              <input class="textitem" type="text" placeholder="その他">
+              <input class="textitem" type="text" placeholder="その他" v-bind:disabled="option!='その他'" />
             </li>
           </ul>
         </div>
