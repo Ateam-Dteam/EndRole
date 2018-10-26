@@ -16,41 +16,30 @@
               <label class="cp_sl08_closeLabel" for="close"></label>
               <ul class="cp_sl08_options">
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="cat" value="キリスト教" v-model="religion"/>
-                  <label class="cp_sl08_label" for="cat">キリスト教</label>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="キリスト教" value="キリスト教" v-model="religion"/>
+                  <label class="cp_sl08_label" for="キリスト教">キリスト教</label>
                 </li>
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="dog" value="イスラム教" v-model="religion"/>
-                  <label class="cp_sl08_label" for="dog">イスラム教</label>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="イスラム教" value="イスラム教" v-model="religion"/>
+                  <label class="cp_sl08_label" for="イスラム教">イスラム教</label>
                 </li>
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="rabbit" value="仏教" v-model="religion"/>
-                  <label class="cp_sl08_label" for="rabbit">仏教</label>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="仏教" value="仏教" v-model="religion"/>
+                  <label class="cp_sl08_label" for="仏教">仏教</label>
                 </li>
                 <li>
-                  <input class="cp_sl08_input" type="radio" name="option08" id="squirrel" value="無宗教" v-model="religion"/>
-                  <label class="cp_sl08_label" for="squirrel">無宗教</label>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="無宗教" value="無宗教" v-model="religion"/>
+                  <label class="cp_sl08_label" for="無宗教">無宗教</label>
+                </li>
+                <li>
+                  <input class="cp_sl08_input" type="radio" name="option08" id="わからない" value="わからない" v-model="religion"/>
+                  <label class="cp_sl08_label" for="わからない">わからない</label>
                 </li>
               </ul>
               <label class="cp_sl08_expandLabel" for="opener"></label>
             </li>
           </ul>
         </div>
-
-        <div class="cp_ipselect08_1">
-          <ul class="cp_sl08">
-            <li class="cp_sl08_items">
-              <input class="" type="radio" name="awesomeness" id="" value=""/>
-              <span class="cp_sl08_label cp_sl08_placeholder">わからない</span>
-            </li>
-          </ul>
-        </div>
-
-        <!--
-                <div class="detail">
-                 <h2>詳細</h2>
-                </div>
-        -->
 
         <div class="buttons">
           <!--<input v-on:click="prevButtonAction" type="button" class="btn-left" value="戻る" />-->
