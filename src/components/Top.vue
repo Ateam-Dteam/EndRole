@@ -11,7 +11,7 @@
 
       <div class="top-wrapper">
         <div class="container">
-          <img src="@/assets/bg.png" alt="">
+          <img src="@/assets/endrole_top-2.png" alt="">
           <router-link class="btn" to="/Form"></router-link>
         </div>
       </div>
