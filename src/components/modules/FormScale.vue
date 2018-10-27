@@ -30,7 +30,7 @@
 
         <div class="buttons">
           <input v-if="this.$store.state.stepCount!=0" v-on:click="prevButtonAction" type="button" class="btn-left" value="戻る" />
-          <input v-on:click="nextButtonAction" type="button" class="btn-right" value="進む" />
+          <input v-on:click="nextButtonAction" type="button" class="btn-right" value="進む" v-bind:disabled="scale==''"/>
         </div>
 
       </div>
