@@ -11,7 +11,7 @@
 
       <div class="top-wrapper">
         <div class="container">
-          <img src="@/assets/endrole_top-2.png" alt="">
+          <img src="@/assets/top.png" alt="">
           <router-link class="btn" to="/Form"></router-link>
         </div>
       </div>
@@ -86,10 +86,10 @@ export default {
 
   .btn{
     position: absolute;
-    height: 60px;
-    width: 170px;
+    height: 70px;
+    width: 200px;
     right: 30%;
-    top: 91%;
+    top: 90%;
 
     padding:0;
     margin:0;
