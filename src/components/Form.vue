@@ -9,6 +9,9 @@ import FormReligion from '@/components/modules/FormReligion'
 import FormAttendant from '@/components/modules/FormAttendant'
 import FormOption from '@/components/modules/FromOption'
 import FormEstimate from '@/components/modules/FormEstimate'
+import FormPlace from '@/components/modules/FormPlace'
+import FormScale from '@/components/modules/FormScale'
+import FormOther from '@/components/modules/FormOther'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -22,7 +25,10 @@ export default {
     FormReligion,
     FormAttendant,
     FormOption,
-    FormEstimate
+    FormEstimate,
+    FormPlace,
+    FormScale,
+    FormOther
   }
 }
 </script>

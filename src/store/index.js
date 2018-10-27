@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const Form = {
   namespaced: true,
   state: {
-    component: ['FormReligion', 'FormAttendant', 'FormOption', 'FormEstimate']
+    component: ['FormAttendant', 'FormPlace', 'FormScale', 'FormOption', 'FormOther', 'FormEstimate']
   },
   mutations: {},
   actions: {
@@ -54,7 +54,10 @@ export default new Vuex.Store({
     property: {
       religion: '',
       attendant: '',
-      option: ''
+      place: '',
+      scale: '',
+      other: '',
+      option: []
     }
   },
   mutations: {

@@ -33,18 +33,12 @@
         </div>
 
         <div class="buttons">
-          <input v-on:click="prevButtonAction" type="button" class="btn-left" value="戻る" />
+          <input v-if="this.$store.state.stepCount!=0" v-on:click="prevButtonAction" type="button" class="btn-left" value="戻る" />
           <input v-on:click="nextButtonAction" type="button" class="btn-right" value="進む" />
         </div>
 
       </div>
     </div>
-
-    <footer>
-      <div class="price">
-        <h2>¥ {{ getPrice }} </h2>
-      </div>
-    </footer>
   </div>
 </template>
 

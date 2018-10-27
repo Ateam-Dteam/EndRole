@@ -4,30 +4,26 @@
 
     <div class="top-wapper">
       <div class="container">
-        <h1>オプションサービス</h1>
+        <h1>どんなふうに？</h1>
 
         <div class="selectbox">
           <ul class="items">
             <li class="item">
-              <input class="" type="checkbox" name="awesomeness" id="メッセージサービス" value="メッセージサービス" v-model="option"/>
-              <span class="">メッセージサービス</span>
+              <input class="" type="radio" name="awesomeness" value="盛大に" v-model="scale"/>
+              <span class="cp_sl08_label cp_sl08_scaleholder">盛大に</span>
             </li>
             <li class="item">
-              <input class="" type="checkbox" name="awesomeness" id="伝記製本" value="伝記製本" v-model="option"/>
-              <span class="">伝記製本</span>
+              <input class="" type="radio" name="awesomeness" value="一般的" v-model="scale"/>
+              <span class="cp_sl08_label cp_sl08_scaleholder">一般的</span>
             </li>
             <li class="item">
-              <input class="" type="checkbox" name="awesomeness" id="ホログラムによる演出" value="ホログラムによる演出" v-model="option"/>
-              <span class="">ホログラムによる演出</span>
+              <input class="" type="radio" name="awesomeness" value="小ぢんまりとした" v-model="scale"/>
+              <span class="cp_sl08_label cp_sl08_scaleholder">小ぢんまりとした</span>
             </li>
             <li class="item">
-              <input class="" type="checkbox" name="awesomeness" id="ペッパーくんによる演出" value="ペッパーくんによる演出" v-model="option"/>
-              <span class="">ペッパーくんによる演出</span>
-            </li>
-            <li class="item">
-              <input class="" type="checkbox" name="awesomeness" id="その他" value="その他" v-model="option"/>
-              <span class=""></span>
-              <input class="textitem" type="text" placeholder="その他" v-bind:disabled="option!='その他'">
+              <input class="" type="radio" name="awesomeness" value="その他" v-model="scale"/>
+              <span class="cp_sl08_label cp_sl08_scaleholder"></span>
+              <input class="textitem" type="text" placeholder="その他" v-bind:disabled="scale!='その他'">
             </li>
           </ul>
         </div>
@@ -46,7 +42,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'FromOption',
+  name: 'FormScale',
   methods: {
     ...mapActions('Form', {
       'nextButtonAction': 'nextButtonAction',
@@ -57,12 +53,12 @@ export default {
     ...mapGetters({
       'getPrice': 'getPrice'
     }),
-    option: {
+    scale: {
       get () {
-        return this.$store.state.property.option
+        return this.$store.state.property.scale
       },
       set (value) {
-        this.$store.commit('setProperty', {option: value})
+        this.$store.commit('setProperty', {scale: value})
       }
     }
   }
@@ -102,7 +98,7 @@ export default {
 
   /*呼びたい人，および下のmargin*/
   .top-wapper h1{
-    font-size: 32px;
+    font-size: 36px;
     margin-bottom: 100px;
   }
 
@@ -181,7 +177,6 @@ export default {
     border-width: 0 0 0.5px;
     border-color: #D6D5D5;
   }
-
   input:focus {
     border-color: #83c6d2;
   }

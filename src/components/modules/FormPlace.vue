@@ -3,36 +3,34 @@
     <header></header>
 
     <div class="top-wapper">
-      <div class="container radius">
-        <H1>アンケート結果</H1>
-        <h2>人</h2>
-        <p> {{ this.$store.state.property.attendant }} </p>
+      <div class="container">
+        <h1>どこで葬儀を行いたい？</h1>
 
-        <h2>場所</h2>
-        <p> {{ this.$store.state.property.place }} </p>
-
-        <h2>規模</h2>
-        <p> {{ this.$store.state.property.scale }} </p>
-
-        <h2>オプション</h2>
-        <ul>
-          <li v-for="item in this.$store.state.property.option" v-bind:key="item">
-            {{ item }}
-          </li>
-        </ul>
-
-        <h2>その他</h2>
-        <p> {{ this.$store.state.property.other }} </p>
-
-        <h3>この内容で相談しますか？</h3>
-
-        <div class="buttons">
-          <input v-on:click="call" type="button" class="btn-left" value="Yes" />
-          <input v-on:click="prevButtonAction" type="button" class="btn-right" value="No" />
+        <div class="selectbox">
+          <ul class="items">
+            <li class="item">
+              <input class="" type="radio" name="awesomeness" value="会館" v-model="place"/>
+              <span class="cp_sl08_label cp_sl08_placeholder">会館</span>
+            </li>
+            <li class="item">
+              <input class="" type="radio" name="awesomeness" value="自宅" v-model="place"/>
+              <span class="cp_sl08_label cp_sl08_placeholder">自宅</span>
+            </li>
+            <li class="item">
+              <input class="" type="radio" name="awesomeness" value="屋外" v-model="place"/>
+              <span class="cp_sl08_label cp_sl08_placeholder">屋外</span>
+            </li>
+            <li class="item">
+              <input class="" type="radio" name="awesomeness" value="その他" v-model="place"/>
+              <span class="cp_sl08_label cp_sl08_placeholder"></span>
+              <input class="textitem" type="text" placeholder="その他" v-bind:disabled="place!='その他'">
+            </li>
+          </ul>
         </div>
 
-        <div class="right">
-          <img src="@/assets/logo.png" alt="">
+        <div class="buttons">
+          <input v-if="this.$store.state.stepCount!=0" v-on:click="prevButtonAction" type="button" class="btn-left" value="戻る" />
+          <input v-on:click="nextButtonAction" type="button" class="btn-right" value="進む" />
         </div>
 
       </div>
@@ -44,20 +42,25 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'FormEstimate',
+  name: 'FormPlace',
   methods: {
     ...mapActions('Form', {
       'nextButtonAction': 'nextButtonAction',
       'prevButtonAction': 'prevButtonAction'
-    }),
-    call: function () {
-      alert('1234-56-7890')
-    }
+    })
   },
   computed: {
     ...mapGetters({
       'getPrice': 'getPrice'
-    })
+    }),
+    place: {
+      get () {
+        return this.$store.state.property.place
+      },
+      set (value) {
+        this.$store.commit('setProperty', {place: value})
+      }
+    }
   }
 }
 </script>
@@ -85,36 +88,18 @@ export default {
     border-color: inherit;
   }
 
-  .container{
-    padding: 20px;
-  }
-
   /*幅の指定*/
   .top-wapper {
-    width: 90%;
+    width: 80%;
     text-align: center;
     padding-top: 20px;
     margin: 0 auto;
   }
 
-  .top-wapper p{
-    padding: 0 10px;
-    text-align: left;
-    margin-bottom: 30px;
-
-  }
-
   /*呼びたい人，および下のmargin*/
   .top-wapper h1{
     font-size: 36px;
-    margin-bottom: 20px;
-    text-align: center;
-    padding-left: 10px;
-  }
-
-  .top-wapper h2{
-    text-align: left;
-    padding-left: 10px;
+    margin-bottom: 100px;
   }
 
   .selectbox li{
@@ -125,17 +110,6 @@ export default {
   .selectbox ul{
     list-style: none;
     padding: 0;
-  }
-
-  li{
-    text-align: left;
-    margin-bottom: 10px;
-    padding: 0 10px;
-  }
-
-  ul{
-    list-style: none;
-    margin-bottom: 30px;
   }
 
   .items {
@@ -161,38 +135,28 @@ export default {
   }
 
   .buttons{
-    margin: 10px 0;
+    margin: 20px 0;
   }
 
   .buttons .btn-left{
     font: 1rem 'Fira Sans', sans-serif;
     padding: .5rem;
-    background: #83c6d2;
+    background: #86d1f0;
     border: none;
     border-radius: 4px;
     margin: 4px;
-    /*    float: left;*/
+    float: left;
     padding: 5px 15px;
   }
 
   .buttons .btn-right{
     font: 1rem 'Fira Sans', sans-serif;
     padding: .5rem;
-    background: #83c6d2;
+    background: #86d1f0;
     border: none;
     border-radius: 4px;
     margin: 4px;
-    /*    float: right;*/
-    padding: 5px 15px;
-  }
-
-  .btn{
-    font: 1rem 'Fira Sans', sans-serif;
-    padding: .5rem;
-    background: #83c6d2;
-    border: none;
-    border-radius: 4px;
-    margin: 4px;
+    float: right;
     padding: 5px 15px;
   }
 
@@ -201,7 +165,7 @@ export default {
     text-align: center;
     position: fixed;
     bottom: 0;
-    width: 80%;
+    width: 100%;
     height: 55px;
   }
 
@@ -209,13 +173,6 @@ export default {
     font-size: 36px;
     text-align: left;
     padding-left: 20px;
-  }
-
-  img{
-    width: 30%;
-    margin: 0 auto;
-    padding-top: 30px;
-    text-align: right;
   }
 
   .textitem{
@@ -235,7 +192,6 @@ export default {
     border-width: 0 0 0.5px;
     border-color: #D6D5D5;
   }
-
   input:focus {
     border-color: #83c6d2;
   }
@@ -252,29 +208,5 @@ export default {
     border-radius: 30px 30px 0 0 / 30px 30px 0 0;
     -webkit-border-radius: 30px 30px 0 0 / 30px 30px 0 0;
     -moz-border-radius: 30px 30px 0 0 / 30px 30px 0 0;
-  }
-
-  .radius{
-
-    margin: 0 auto;
-    background-color: white;
-
-    border-top: 1px solid #D6D5D5;
-    border-left: 1px solid #D6D5D5;
-    border-right: 1px solid #D6D5D5;
-
-    border-radius: 30px 30px 0 0 / 30px 30px 0 0;
-    -webkit-border-radius: 30px 30px 0 0 / 30px 30px 0 0;
-    -moz-border-radius: 30px 30px 0 0 / 30px 30px 0 0;
-  }
-
-  .center{
-    margin: 10px;
-    text-align: center;
-  }
-
-  .right{
-    text-align: right;
-    margin-bottom: 100px;
   }
 </style>
